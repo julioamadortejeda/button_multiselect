@@ -52,7 +52,6 @@ class ButtonMultiSelect<T> extends GetView<ItemSelectedController> {
           child: Center(
             child: Wrap(
               alignment: WrapAlignment.center,
-              //spacing: 2,
               runSpacing: 2,
               children: [
                 ...List.generate(items.length, (index) {
@@ -69,8 +68,6 @@ class ButtonMultiSelect<T> extends GetView<ItemSelectedController> {
                         controller.addSelectedItem(items[index].value);
                         controller.addSelectedIndex(index);
                         onSelectedChanged(controller.selectedIems);
-                        // inspect(controller.selectedIems);
-                        // print(controller.selectedIndex);
                       },
                     );
                   }, items.length.obs);

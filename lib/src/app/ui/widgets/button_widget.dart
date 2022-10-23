@@ -27,6 +27,8 @@ class ButtonCard extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isPortrait =
         MediaQuery.of(context).orientation == Orientation.portrait;
+
+    print(width);
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
@@ -65,26 +67,44 @@ class ButtonCard extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        item.icon != null
-                            ? Icon(
-                                item.icon,
-                                color: primaryColor,
-                                size: width * .12,
-                              )
-                            : Container(),
+                        if (item.icon != null)
+                          Flexible(
+                            child: Icon(
+                              item.icon,
+                              color: primaryColor,
+                              // size: width * .2,
+                            ),
+                          )
+                        else
+                          Container(),
                         // Spacer(),
-                        SizedBox(
-                          width: width * .6,
-                          child: AutoSizeText(
-                            item.label,
-                            textAlign: TextAlign.center,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            minFontSize: 8,
-                            style: TextStyle(
-                                color: textColor,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                        Flexible(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 5.0),
+                            child: FittedBox(
+                              fit: BoxFit.cover,
+                              child: Text(
+                                item.label,
+                                textAlign: TextAlign.center,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                style: TextStyle(
+                                    color: textColor,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            // child: AutoSizeText(
+                            //   item.label,
+                            //   textAlign: TextAlign.center,
+                            //   overflow: TextOverflow.ellipsis,
+                            //   maxLines: 1,
+                            //   minFontSize: 8,
+                            //   style: TextStyle(
+                            //       color: textColor,
+                            //       fontSize: 20,
+                            //       fontWeight: FontWeight.bold),
+                            // ),
                           ),
                         ),
                       ],
