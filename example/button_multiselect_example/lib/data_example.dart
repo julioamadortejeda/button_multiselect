@@ -1,63 +1,62 @@
 import 'package:button_multiselect/button_multiselect.dart';
 import 'package:flutter/material.dart';
 
-class Prueba {
-  String nombre;
-  int edad;
-  double estatura;
+class TestData {
+  String name;
+  int age;
 
-  Prueba(this.nombre, this.edad, this.estatura);
+  TestData(this.name, this.age);
 }
 
-ButtonMultiSelectItem<Prueba> _itemTest1 = ButtonMultiSelectItem<Prueba>(
+ButtonMultiSelectItem<TestData> _itemTest1 = ButtonMultiSelectItem<TestData>(
   'A large test to show example',
-  value: Prueba('uno', 30, 1.54),
+  value: TestData('one', 30),
   icon: Icons.back_hand,
 );
 
-ButtonMultiSelectItem<Prueba> _itemTest2 = ButtonMultiSelectItem<Prueba>(
-  'test 2',
-  value: Prueba('dos', 31, 1.54),
+ButtonMultiSelectItem<TestData> _itemTest2 = ButtonMultiSelectItem<TestData>(
+  '2',
+  value: TestData('two', 31),
   icon: Icons.access_time_outlined,
 );
 
-ButtonMultiSelectItem<Prueba> _itemTest3 = ButtonMultiSelectItem<Prueba>(
+ButtonMultiSelectItem<TestData> _itemTest3 = ButtonMultiSelectItem<TestData>(
   'test 3',
-  value: Prueba('tres', 22, 1.54),
+  value: TestData('three', 22),
   icon: Icons.account_box_outlined,
 );
 
-ButtonMultiSelectItem<Prueba> _itemTest4 = ButtonMultiSelectItem<Prueba>(
+ButtonMultiSelectItem<TestData> _itemTest4 = ButtonMultiSelectItem<TestData>(
   'test 4',
-  value: Prueba('cuatro', 63, 1.54),
+  value: TestData('for', 63),
   icon: Icons.account_box,
 );
 
-ButtonMultiSelectItem<Prueba> _itemTest5 = ButtonMultiSelectItem<Prueba>(
-  '5',
-  value: Prueba('cinco', 12, 1.54),
+ButtonMultiSelectItem<TestData> _itemTest5 = ButtonMultiSelectItem<TestData>(
+  'test 5',
+  value: TestData('five', 12),
   icon: Icons.zoom_in_outlined,
 );
 
-ButtonMultiSelectItem<Prueba> _itemTest6 = ButtonMultiSelectItem<Prueba>(
+ButtonMultiSelectItem<TestData> _itemTest6 = ButtonMultiSelectItem<TestData>(
   'test 6',
-  value: Prueba('seis', 77, 1.54),
+  value: TestData('six', 77),
   icon: Icons.accessibility_new_outlined,
 );
 
-ButtonMultiSelectItem<Prueba> _itemTest7 = ButtonMultiSelectItem<Prueba>(
+ButtonMultiSelectItem<TestData> _itemTest7 = ButtonMultiSelectItem<TestData>(
   'test 7',
-  value: Prueba('siete', 54, 1.54),
+  value: TestData('seven', 54),
   icon: Icons.ad_units_outlined,
 );
 
-ButtonMultiSelectItem<Prueba> _itemTest8 = ButtonMultiSelectItem<Prueba>(
+ButtonMultiSelectItem<TestData> _itemTest8 = ButtonMultiSelectItem<TestData>(
   'test 8',
-  value: Prueba('ocho', 45, 1.54),
+  value: TestData('eight', 45),
   icon: Icons.workspace_premium_rounded,
 );
 
-List<ButtonMultiSelectItem<Prueba>> items = [
+List<ButtonMultiSelectItem<TestData>> items = [
   _itemTest1,
   _itemTest2,
   _itemTest3,
@@ -68,47 +67,55 @@ List<ButtonMultiSelectItem<Prueba>> items = [
   _itemTest8
 ];
 
-ButtonMultiSelectItem<int> _itemTestNoIcon1 = ButtonMultiSelectItem<int>(
+ButtonMultiSelectItem<TestData> _itemTestNoIcon1 =
+    ButtonMultiSelectItem<TestData>(
   'a large test to show example',
-  value: 1,
+  value: TestData('one', 77),
 );
 
-ButtonMultiSelectItem<int> _itemTestNoIcon2 = ButtonMultiSelectItem<int>(
+ButtonMultiSelectItem<TestData> _itemTestNoIcon2 =
+    ButtonMultiSelectItem<TestData>(
   '2',
-  value: 2,
+  value: TestData('two', 77),
 );
 
-ButtonMultiSelectItem<int> _itemTestNoIcon3 = ButtonMultiSelectItem<int>(
+ButtonMultiSelectItem<TestData> _itemTestNoIcon3 =
+    ButtonMultiSelectItem<TestData>(
   'test 3',
-  value: 3,
+  value: TestData('three', 77),
 );
 
-ButtonMultiSelectItem<int> _itemTestNoIcon4 = ButtonMultiSelectItem<int>(
+ButtonMultiSelectItem<TestData> _itemTestNoIcon4 =
+    ButtonMultiSelectItem<TestData>(
   'test 4',
-  value: 4,
+  value: TestData('for', 77),
 );
 
-ButtonMultiSelectItem<int> _itemTestNoIcon5 = ButtonMultiSelectItem<int>(
+ButtonMultiSelectItem<TestData> _itemTestNoIcon5 =
+    ButtonMultiSelectItem<TestData>(
   'test 5',
-  value: 5,
+  value: TestData('five', 77),
 );
 
-ButtonMultiSelectItem<int> _itemTestNoIcon6 = ButtonMultiSelectItem<int>(
+ButtonMultiSelectItem<TestData> _itemTestNoIcon6 =
+    ButtonMultiSelectItem<TestData>(
   'test 6',
-  value: 6,
+  value: TestData('six', 77),
 );
 
-ButtonMultiSelectItem<int> _itemTestNoIcon7 = ButtonMultiSelectItem<int>(
+ButtonMultiSelectItem<TestData> _itemTestNoIcon7 =
+    ButtonMultiSelectItem<TestData>(
   'test 7',
-  value: 7,
+  value: TestData('seven', 77),
 );
 
-ButtonMultiSelectItem<int> _itemTestNoIcon8 = ButtonMultiSelectItem<int>(
+ButtonMultiSelectItem<TestData> _itemTestNoIcon8 =
+    ButtonMultiSelectItem<TestData>(
   'test 8',
-  value: 8,
+  value: TestData('eight', 77),
 );
 
-List<ButtonMultiSelectItem<int>> itemsint = [
+List<ButtonMultiSelectItem<TestData>> itemsNoIcons = [
   _itemTestNoIcon1,
   _itemTestNoIcon2,
   _itemTestNoIcon3,
@@ -118,3 +125,41 @@ List<ButtonMultiSelectItem<int>> itemsint = [
   _itemTestNoIcon7,
   _itemTestNoIcon8
 ];
+
+List<Sizes> sizes = [
+  Sizes(size: ButtonSize.small, value: 'Small'),
+  Sizes(size: ButtonSize.medium, value: 'Medium'),
+  Sizes(size: ButtonSize.large, value: 'Large'),
+];
+
+List<Styles> styles = [
+  Styles(style: ButtonSelectedStyle.border, value: 'Border'),
+  Styles(style: ButtonSelectedStyle.check, value: 'Check'),
+  Styles(style: ButtonSelectedStyle.both, value: 'Both'),
+];
+
+List<HasIcons> hasIcons = [
+  HasIcons(hasIcon: true, value: 'true'),
+  HasIcons(hasIcon: false, value: 'false')
+];
+
+class Sizes {
+  ButtonSize size;
+  String value;
+
+  Sizes({required this.size, required this.value});
+}
+
+class Styles {
+  ButtonSelectedStyle style;
+  String value;
+
+  Styles({required this.style, required this.value});
+}
+
+class HasIcons {
+  bool hasIcon;
+  String value;
+
+  HasIcons({required this.hasIcon, required this.value});
+}

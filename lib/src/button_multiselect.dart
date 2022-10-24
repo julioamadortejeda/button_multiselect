@@ -29,16 +29,9 @@ class ButtonMultiSelect<T> extends GetView<ItemSelectedController> {
     bool fullIcons = items.every((element) => element.icon != null);
     bool emptyIcons = items.every((element) => element.icon == null);
 
-    // bool registered = Get.isRegistered<ItemSelectedController>(tag: finalTag);
-    // bool hasMultipleWithoutTag = (!registered) ||
-    //     (registered && tag.isNotEmpty) ||
-    //     (!registered && tag.isEmpty);
-    // assert(registered == false,
-    //     'to use more than one "ButtonMultiSelect" use a diferent "tag" property to identify them');
     assert(items.isNotEmpty);
     assert(fullIcons != emptyIcons, 'all items must have icons or none');
     Get.put<ItemSelectedController>(ItemSelectedController(), tag: tag);
-    Get.create<ItemSelectedController>(() => ItemSelectedController());
   }
 
   @override
@@ -79,46 +72,6 @@ class ButtonMultiSelect<T> extends GetView<ItemSelectedController> {
       },
     );
   }
-  // @override
-  // Widget build(BuildContext context) {
-  //   return LayoutBuilder(
-  //     builder: (_, BoxConstraints constraints) {
-  //       final buttonWidth =
-  //           _calculateCardWidth(buttonSize, context, constraints.maxWidth);
-  //       return Container(
-  //         padding: const EdgeInsets.all(5.0),
-  //         child: Center(
-  //           child: Wrap(
-  //             alignment: WrapAlignment.center,
-  //             //spacing: 2,
-  //             runSpacing: 2,
-  //             children: [
-  //               ...List.generate(items.length, (index) {
-  //                 return Obx(() {
-  //                   return ButtonCard(
-  //                     selectedStyle: selectedStyle,
-  //                     item: items[index],
-  //                     selected: controller.alreadyInList(index),
-  //                     width: buttonWidth,
-  //                     primaryColor: primaryColor,
-  //                     textColor: textColor,
-  //                     onTap: () {
-  //                       controller.addSelectedItem(items[index].value);
-  //                       controller.addSelectedIndex(index);
-  //                       onSelectedChanged(controller.selectedIems);
-  //                       // inspect(controller.selectedIems);
-  //                       // print(controller.selectedIndex);
-  //                     },
-  //                   );
-  //                 });
-  //               })
-  //             ],
-  //           ),
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
 
   double _calculateCardWidth(
       ButtonSize buttonSize, BuildContext context, double maxWidth) {

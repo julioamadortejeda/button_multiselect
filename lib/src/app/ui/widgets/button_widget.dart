@@ -25,10 +25,6 @@ class ButtonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isPortrait =
-        MediaQuery.of(context).orientation == Orientation.portrait;
-
-    print(width);
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
@@ -44,74 +40,63 @@ class ButtonCard extends StatelessWidget {
             ),
             borderRadius: BorderRadius.circular(5.0),
           ),
-          child: Container(
-            padding: EdgeInsets.all(width * .02),
-            height: width * (isPortrait ? .4 : .25),
-            child: Stack(
-              children: [
-                if (selected &&
-                    (selectedStyle == ButtonSelectedStyle.both ||
-                        selectedStyle == ButtonSelectedStyle.check))
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Icon(
-                      color: primaryColor,
-                      Icons.check,
-                      size: width * .1,
+          child: AspectRatio(
+            aspectRatio: 21 / 9,
+            child: Container(
+              padding: EdgeInsets.all(width * .02),
+              child: Stack(
+                children: [
+                  if (selected &&
+                      (selectedStyle == ButtonSelectedStyle.both ||
+                          selectedStyle == ButtonSelectedStyle.check))
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Icon(
+                        color: primaryColor,
+                        Icons.check,
+                        size: width * .1,
+                      ),
                     ),
-                  ),
-                Center(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        vertical: width * .05, horizontal: width * .07),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        if (item.icon != null)
-                          Flexible(
-                            child: Icon(
-                              item.icon,
-                              color: primaryColor,
-                              // size: width * .2,
-                            ),
-                          )
-                        else
-                          Container(),
-                        // Spacer(),
-                        Flexible(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 5.0),
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Text(
-                                item.label,
-                                textAlign: TextAlign.center,
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
-                                style: TextStyle(
-                                    color: textColor,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          if (item.icon != null)
+                            Flexible(
+                              child: FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: Icon(
+                                  item.icon,
+                                  color: primaryColor,
+                                ),
                               ),
-                            ),
-                            // child: AutoSizeText(
-                            //   item.label,
-                            //   textAlign: TextAlign.center,
-                            //   overflow: TextOverflow.ellipsis,
-                            //   maxLines: 1,
-                            //   minFontSize: 8,
-                            //   style: TextStyle(
-                            //       color: textColor,
-                            //       fontSize: 20,
-                            //       fontWeight: FontWeight.bold),
-                            // ),
+                            )
+                          else
+                            Container(),
+                          const SizedBox(
+                            width: 5,
                           ),
-                        ),
-                      ],
+                          Flexible(
+                            child: AutoSizeText(
+                              item.label,
+                              textAlign: TextAlign.center,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              minFontSize: 8,
+                              style: TextStyle(
+                                  color: textColor,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
