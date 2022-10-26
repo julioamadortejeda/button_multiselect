@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
-import '../../../utils/button_multiselect_item.dart';
-import '../../../utils/button_selected_style.dart';
+import '../../utils/button_multiselect_item.dart';
+import '../../utils/button_selected_style.dart';
 
 class ButtonCard extends StatelessWidget {
   final ButtonMultiSelectItem item;

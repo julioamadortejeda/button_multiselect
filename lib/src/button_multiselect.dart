@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'app/ui/widgets/button_widget.dart';
-import 'app/ui/widgets/controller/items_selected_controller.dart';
+import 'app/ui/button_widget.dart';
+import 'controller/items_selected_controller.dart';
 import 'utils/button_multiselect_item.dart';
 import 'utils/button_selected_style.dart';
 import 'utils/button_size.dart';
