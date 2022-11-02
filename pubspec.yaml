@@ -1,6 +1,6 @@
 name: button_multiselect
 description: create a list of multiselect buttons that receives a list of items with a generic property that will be returned in the onSelectedChanged event if the item is selected.
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/julioamadortejeda/button_multiselect
 issue_tracker: https://github.com/julioamadortejeda/button_multiselect/issues
 
