@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import 'package:button_multiselect/button_multiselect.dart';
@@ -127,9 +129,10 @@ class _DemoWidgetState extends State<DemoWidget> {
           ButtonMultiSelect<TestData>(
             buttonSize: selectedSize,
             items: hasIcon ? items : itemsNoIcons,
-            tag: 'primero',
+            twoLines: false,
             onSelectedChanged: (data) {
               //your code here
+              inspect(data);
             },
             selectedStyle: selectedStyle,
             primaryColor: Theme.of(context).primaryColor,

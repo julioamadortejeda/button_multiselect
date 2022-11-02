@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import 'app/ui/button_widget.dart';
-import 'controller/items_selected_controller.dart';
+import 'provider/item_selected_provider.dart';
 import 'utils/button_multiselect_item.dart';
 import 'utils/button_selected_style.dart';
 import 'utils/button_size.dart';
 
-class ButtonMultiSelect<T> extends GetView<ItemSelectedController> {
+class ButtonMultiSelect<T> extends StatelessWidget {
   final List<ButtonMultiSelectItem<T>> items;
   final ValueChanged<List<dynamic>> onSelectedChanged;
   final ButtonSize buttonSize;
   final Color primaryColor;
   final Color textColor;
   final ButtonSelectedStyle selectedStyle;
-  final String tag;
+  final bool twoLines;
 
   ButtonMultiSelect({
     required this.items,
@@ -23,53 +23,59 @@ class ButtonMultiSelect<T> extends GetView<ItemSelectedController> {
     required this.textColor,
     this.buttonSize = ButtonSize.medium,
     this.selectedStyle = ButtonSelectedStyle.both,
-    this.tag = 'default_tag',
     super.key,
+    this.twoLines = false,
   }) {
     bool fullIcons = items.every((element) => element.icon != null);
     bool emptyIcons = items.every((element) => element.icon == null);
 
     assert(items.isNotEmpty);
     assert(fullIcons != emptyIcons, 'all items must have icons or none');
-    Get.put<ItemSelectedController>(ItemSelectedController(), tag: tag);
   }
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (_, BoxConstraints constraints) {
-        final buttonWidth =
-            _calculateCardWidth(buttonSize, context, constraints.maxWidth);
-        return Container(
-          padding: const EdgeInsets.all(5.0),
-          child: Center(
-            child: Wrap(
-              alignment: WrapAlignment.center,
-              runSpacing: 2,
-              children: [
-                ...List.generate(items.length, (index) {
-                  return ObxValue((data) {
-                    return ButtonCard(
-                      selectedStyle: selectedStyle,
-                      item: items[index],
-                      selected: controller.alreadyInList(index),
-                      width: buttonWidth,
-                      primaryColor: primaryColor,
-                      textColor: textColor,
-                      onTap: () {
-                        data.value = index;
-                        controller.addSelectedItem(items[index].value);
-                        controller.addSelectedIndex(index);
-                        onSelectedChanged(controller.selectedIems);
-                      },
-                    );
-                  }, items.length.obs);
-                })
-              ],
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ItemSelectedProvider())
+      ],
+      child: LayoutBuilder(
+        builder: (_, BoxConstraints constraints) {
+          final buttonWidth =
+              _calculateCardWidth(buttonSize, context, constraints.maxWidth);
+          return Container(
+            padding: const EdgeInsets.all(5.0),
+            child: Center(
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                runSpacing: 2,
+                children: [
+                  ...List.generate(items.length, (index) {
+                    return Consumer<ItemSelectedProvider>(
+                        builder: (_, itemSelected, __) {
+                      return ButtonCard(
+                        twoLines: twoLines,
+                        item: items[index],
+                        selected: itemSelected.isSelected(items[index].value),
+                        width: buttonWidth,
+                        onTap: () {
+                          itemSelected
+                              .addOrRemoveSelectedItem(items[index].value);
+                          onSelectedChanged(itemSelected.selectedItems);
+                        },
+                        primaryColor: primaryColor,
+                        textColor: textColor,
+                        selectedStyle: selectedStyle,
+                      );
+                      // });
+                    });
+                  })
+                ],
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 
