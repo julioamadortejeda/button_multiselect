@@ -1,8 +1,8 @@
 import 'dart:developer';
 
+import 'package:button_multiselect/button_multiselect.dart';
 import 'package:flutter/material.dart';
 
-import 'package:button_multiselect/button_multiselect.dart';
 import 'package:button_multiselect_example/data_example.dart';
 
 class DemoWidget extends StatefulWidget {

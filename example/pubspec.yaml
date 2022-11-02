@@ -32,7 +32,7 @@ dependencies:
   flutter:
     sdk: flutter
   button_multiselect:
-    path: ../../
+    path: ../
 
 
   # The following adds the Cupertino Icons font to your application.
